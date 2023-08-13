@@ -1,0 +1,7 @@
+".\Objects\Delay.obj",
+".\Objects\I2C.obj",
+".\Objects\LCD1602.obj",
+".\Objects\I2CAddressScanner.obj",
+".\Objects\main.obj" 
+TO ".\Objects\template" 
+PRINT(".\Listings\template.m51") RAMSIZE(256) 

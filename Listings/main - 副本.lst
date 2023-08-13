@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.7.0   MAIN_______                                                       08/13/2023 17:38:34 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN_______
+OBJECT MODULE PLACED IN .\Objects\main - ∏±±æ.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE main - ∏±±æ.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\main - ∏±±æ.lst) TABS(2) OBJECT(.\Objects\main - ∏±±æ.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "LCD1602.h"
+   3          #include "I2C.H"
+   4          
+   5          #define IIC_ADDRESS_W 0x70
+   6          #define IIC_ADDRESS_R 0x39
+   7          #define INIT_AHT10_ADDRESS 0xE1
+   8          #define INIT_AHT10_ADDRESS_COMMAND_1 0x08
+   9          #define INIT_AHT10_ADDRESS_COMMAND_2 0x07
+  10          
+  11          unsigned int ack = 1;
+  12          
+  13          
+  14          void Delay40ms()    //@11.0592MHz
+  15          {
+  16   1          unsigned char data i, j;
+  17   1      
+  18   1          i = 72;
+  19   1          j = 181;
+  20   1          do
+  21   1          {
+  22   2              while (--j);
+  23   2          } while (--i);
+  24   1      }
+  25          
+  26          
+  27          void init_AHT10() {
+  28   1          I2C_Start();
+  29   1          I2C_SendByte(0x38);
+  30   1          ack=I2C_ReceiveAck();
+  31   1          LCD_ShowNum(1,1,ack,4);
+  32   1          //ÂºÄÂßãÂàùÂßãÂåñ
+  33   1      //  I2C_SendByte(INIT_AHT10_ADDRESS);
+  34   1      //  ack=I2C_ReceiveAck();
+  35   1      //  I2C_SendByte(INIT_AHT10_ADDRESS_COMMAND_1);
+  36   1      //  ack=I2C_ReceiveAck();
+  37   1      //  I2C_SendByte(INIT_AHT10_ADDRESS_COMMAND_2);
+  38   1      //  ack=I2C_ReceiveAck();
+  39   1          I2C_Stop();
+  40   1      
+  41   1      }
+  42          
+  43          void main() {
+  44   1          //‰∏äÁîµÂêéÂª∂Êó∂40ms
+  45   1      
+  46   1          Delay40ms();
+  47   1      
+  48   1          LCD_Init();
+  49   1      
+  50   1          init_AHT10();
+  51   1      
+  52   1      
+  53   1      
+  54   1      
+C51 COMPILER V9.60.7.0   MAIN_______                                                       08/13/2023 17:38:34 PAGE 2   
+
+  55   1          while(1) {
+  56   2      
+  57   2      
+  58   2          }
+  59   1      
+  60   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     53    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
